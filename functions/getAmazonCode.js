@@ -5,7 +5,6 @@ const urlLib = require('url');
 
 const getAmazonCode = async (url) => {
   try {
-    console.log("URL : " + url);
     const response = await axios.get(url);
     const dom = new JSDOM(response.data);
     const offerBox = dom.window.document.querySelector(".dn-offer-amz");

@@ -47,7 +47,7 @@ const generateHtml = async (product_name) => {
               </div>
             </div>
             <div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-1 wp-block-buttons-is-layout-flex">
-            <div class="wp-block-button"><a class="wp-block-button__link has-vivid-green-cyan-background-color has-background wp-element-button" href="${relatedArticle.title}">Lire le test du ${productData.title}</a></div>
+          ${relatedArticle !== null ? `<div class="wp-block-button"><a class="wp-block-button__link has-vivid-green-cyan-background-color has-background wp-element-button" href="${relatedArticle.title}">Lire le test du ${productData.title}</a></div>` : ''}
             </div>
           </div>
           ${productData.id !== null ? `<p>[price-history id="${productData.id}"]</p>` : ''}

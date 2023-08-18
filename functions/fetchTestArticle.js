@@ -19,16 +19,22 @@ const fetchTestArticle = async (product_name) => {
       product_name
     )}"`
   );
-  console.log(
-    "URL : " +
-      `${WORDPRESS_GET_API_URL}/wp-json/wp/v2/search?search="Test - ${encodeURIComponent(
-        product_name
-      )}"`
-  );
   const data = await response.json();
 
   // Use regex to extract product name
   const regex = /([^,:]+)/i;
+
+  // Function to generate potential product name variations
+  const generateVariations = (name) => {
+    const numberAtEnd = name.match(/(\d)$/); // Check if ends with a digit
+    if (numberAtEnd) {
+      const base = name.slice(0, -1).trim(); // Remove the last digit
+      return [name, `${base} ${numberAtEnd[1]}`]; // Return both versions
+    }
+    return [name];
+  };
+
+  const possibleProductNames = generateVariations(product_name);
 
   // Loop through all data
   for (let item of data) {
@@ -47,8 +53,8 @@ const fetchTestArticle = async (product_name) => {
       ) {
         return item;
       }
-      // Else just test the product_name
-      else if (productNameFromTitle === product_name) {
+      // Check for matches in possibleProductNames array
+      else if (possibleProductNames.includes(productNameFromTitle)) {
         return item;
       }
     }

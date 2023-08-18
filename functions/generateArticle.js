@@ -18,9 +18,9 @@ function query(sql) {
   });
 }
 
-async function generateArticle(action, productName, postId) {
+async function generateArticle(action, productName, postId, postStatus) {
   if (await productExists(productName)) {
-
+    console.log("Le produit existe dans la base de données. Génération de l'article ...");
     // Call database to get descript_french from device 
     const sqlDescriptionFrench = `SELECT description_french FROM devices WHERE title = ${mysql.escape(
       productName
@@ -38,7 +38,6 @@ async function generateArticle(action, productName, postId) {
 
 
     const htmlContent = await generateHTML(productName);
-    console.log("HTML généré : " + htmlContent)
     const brandName = getBrandName(productName);
     const categoryId = await getCategoryId(brandName);
     const tags = ["fichetechnique", brandName, "fiche technique", "fiche technique " + brandName, "fiche technique " + productName, "fiche technique " + brandName + " " + productName, productName, "fiche technique " + productName + " " + brandName];
@@ -51,16 +50,13 @@ async function generateArticle(action, productName, postId) {
       if (err) throw err;
     });
 
-    console.log(
-      `Mise à jour de la fiche technique du produit ${productName} dans la base de données ...`
-    );
-
-
     if (action === "POST") {
+      console.log("POST to WordPress");
       const postResponse = await postToWordPress(
         htmlContent,
         productName,
         categoryId,
+        postStatus,
         metaDesc,
         tags
       );
@@ -71,10 +67,12 @@ async function generateArticle(action, productName, postId) {
         return false;
       }
     } else if (action === "PUT" && postId) {
+      console.log("PUT to WordPress");
       const updateResponse = await updateToWordPress(
         htmlContent,
         productName,
         postId,
+        postStatus,
         categoryId,
         metaDesc,
         tags

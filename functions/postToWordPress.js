@@ -1,6 +1,6 @@
 const { WORDPRESS_POST_API_URL, WORDPRESS_APP_ID, WORDPRESS_APP_PASSWORD } = require("../constants");
 
-async function postToWordPress(htmlContent, productName, categoryId, metaDesc, tags = []) {
+async function postToWordPress(htmlContent, productName, categoryId, postStatus, metaDesc, tags = []) {
   try {
     const response = await fetch(
       `${WORDPRESS_POST_API_URL}/wp-json/wp/v2/posts`,
@@ -18,15 +18,15 @@ async function postToWordPress(htmlContent, productName, categoryId, metaDesc, t
           // Slug has to be "fiche-technique-" + the product name normalized without spaces and accents, and dashes instead of spaces"
           slug: "fiche-technique-" + productName.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ /g, "-"),
           content: htmlContent,
-          status: "draft",
-          tags: tags,
+          status: postStatus,
           categories: [categoryId, 2653],
           excerpt: metaDesc
         }),
         
       }
     );
-    console.log("Article publié avec succès en tant que brouillon.");
+    console.log("Article publié avec succès en tant que " + postStatus + " sur WordPress");
+    console.log(response);
     return true;
   } catch (error) {
     console.error(
@@ -34,7 +34,6 @@ async function postToWordPress(htmlContent, productName, categoryId, metaDesc, t
     );
     return false;
   }
-  return false;
 };
 
 module.exports = postToWordPress;

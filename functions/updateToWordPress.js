@@ -4,7 +4,7 @@ const {
   WORDPRESS_APP_PASSWORD,
 } = require("../constants");
 
-async function updateToWordPress(htmlContent, productName, postId, categoryId, metaDesc, tags = []) {
+async function updateToWordPress(htmlContent, productName, postId, postStatus, categoryId, metaDesc, tags = []) {
   try {
     const response = await fetch(
       `${WORDPRESS_POST_API_URL}/wp-json/wp/v2/posts/${postId}`,
