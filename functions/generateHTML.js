@@ -52,7 +52,7 @@ const generateHtml = async (product_name) => {
           </div>
           ${productData.id !== null ? `<p>[price-history id="${productData.id}"]</p>` : ''}
           <p></p>
-          ${productData.title !== null ? `<p>[kelkoo-bpx product_name="${productData.title}"]</p>` : ''}
+          ${productData.title !== null ? `<p>[kelkoo-box product_name="${productData.title}"]</p>` : ''}
           ${AmazonCode ? `<p>[amazon box="${AmazonCode}"]</p>` : ''}
           
                     ${Object.entries(specData)
