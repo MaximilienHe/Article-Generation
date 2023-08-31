@@ -47,13 +47,13 @@ const generateHtml = async (product_name) => {
               </div>
             </div>
             <div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-1 wp-block-buttons-is-layout-flex">
-          ${relatedArticle !== null ? `<div class="wp-block-button"><a class="wp-block-button__link has-vivid-green-cyan-background-color has-background wp-element-button" href="${relatedArticle.link}">Lire le test du ${productData.title}</a></div>` : ''}
+          ${relatedArticle !== null ? `<div class="wp-block-button"><a class="wp-block-button__link has-vivid-green-cyan-background-color has-background wp-element-button" href="${relatedArticle.url}">Lire le test du ${productData.title}</a></div>` : ''}
             </div>
           </div>
           ${productData.id !== null ? `<p>[price-history id="${productData.id}"]</p>` : ''}
           <p></p>
-          <p>[kelkoo-box product_name="${productData.title}"]</p>
-          <p>[amazon box=&quot;${AmazonCode}&quot;]</p>
+          ${productData.title !== null ? `<p>[kelkoo-bpx product_name="${productData.title}"]</p>` : ''}
+          ${AmazonCode ? `<p>[amazon box="${AmazonCode}"]</p>` : ''}
           
                     ${Object.entries(specData)
             .map(
