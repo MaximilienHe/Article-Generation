@@ -42,6 +42,12 @@ if (action === "file") {
     "Veuillez fournir un nom de produit ou une action valide (file ou all)"
   );
   // console.log les exemples d'utilisation avec temps, nom de fichier, etc. Expliquer en langage naturel ce que fais la commande indiquée après
+  console.log("Paramètres de la commande :");
+  console.log("1. Action : file, all, PUT");
+  console.log("2. Temps de délai en minutes (0 par défaut)");
+  console.log("3. Statut de l'article : publish, draft (draft par défaut)");
+  console.log("4. ID du post (indiquer l'ID pour PUT, 0 pour POST)");
+  console.log("5. Nom du fichier ou du produit\n\n");
   console.log("Exemples d'utilisation:");
   console.log("Génerer des articles à partir d'un fichier avec 5 minutes de délai et statut 'publish': node generate-article.js file 5 'Fiches techniques existantes.txt' publish");
   console.log("Génerer des articles à partir d'un fichier avec 5 minutes de délai et statut 'draft': node generate-article.js file 5 'Fiches techniques existantes.txt'");
