@@ -1,6 +1,6 @@
-const axios = require('axios');
-const connectToDB = require('../db'); // Assurez-vous que le chemin est correct
-const generateArticle = require('./generateArticle');
+const axios = require("axios");
+const connectToDB = require("../db"); // Assurez-vous que le chemin est correct
+const generateArticle = require("./generateArticle");
 
 const generateLastArticle = async (delayInMinutes, postStatus) => {
   const db = connectToDB();
@@ -10,11 +10,13 @@ const generateLastArticle = async (delayInMinutes, postStatus) => {
 
   db.query(sql, async (err, result) => {
     if (err) {
-      console.error(`Erreur lors de la récupération des données de la base de données : ${err}`);
+      console.error(
+        `Erreur lors de la récupération des données de la base de données : ${err}`
+      );
       db.end();
       return;
     }
-    
+
     if (result.length === 0) {
       console.log("Aucun nouvel appareil trouvé.");
       db.end();
@@ -22,11 +24,22 @@ const generateLastArticle = async (delayInMinutes, postStatus) => {
     }
 
     const lastDevice = result[0];
-    // Votre logique pour générer un article ici
-    generateArticle("POST", lastDevice.title, 0, postStatus);
+    try {
+      console.log("Génération de l'article pour l'appareil suivant :", lastDevice.title);
+      // Supposons que generateArticle retourne une promesse
+      await generateArticle("POST", lastDevice.title, 0, postStatus);
+      console.log(
+        `Article généré pour le dernier appareil : ${lastDevice.title}`
+      );
+    } catch (err) {
+      console.error(`Erreur lors de la génération de l'article : ${err}`);
+      db.end();
+      process.exit(1); // Terminer avec un code d'erreur
+      return;
+    }
 
-    console.log(`Article généré pour le dernier appareil : ${lastDevice.title}`);
     db.end();
+    process.exit(0); // Terminer normalement
   });
 };
 
