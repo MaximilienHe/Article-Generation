@@ -8,6 +8,13 @@ async function getCategoryId(brandName) {
     const data = await response.json();
 
     // recherchez la catégorie avec le nom de la marque et parent "2653"
+    // Si la brandName = "Sony", alors l'id à renvoyer est 2705
+    if (!brandName) {
+      return null;
+    }
+    if (brandName.toLowerCase() === "sony") {
+      return 2705;
+    }
     let category = data.find(
       (c) =>
         c.name.toLowerCase() === brandName.toLowerCase() && c.parent === 2653

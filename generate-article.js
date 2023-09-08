@@ -6,6 +6,7 @@ const { headers } = require("./constants");
 const generateAllArticles = require("./functions/generateAllArticles");
 const generateArticle = require("./functions/generateArticle");
 const createArticlesFromFile = require("./functions/createArticlesFromFile");
+const generateLastArticle = require("./functions/generateLastArticle");
 
 // Arguments from command line
 const action = process.argv[2];
@@ -35,6 +36,9 @@ if (action === "file") {
       );
     }
   })();
+} else if (action === "last") { // Nouvelle condition pour gérer 'last'
+    console.log("Générer un article pour le dernier appareil...");
+    generateLastArticle(delayInMinutes, postStatus);
 } else if (fileNameOrProductName && postId) {
   generateArticle(action, fileNameOrProductName, postId, postStatus);
 } else {

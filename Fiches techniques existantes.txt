@@ -1,65 +1,11 @@
-Samsung Galaxy S23+
-Samsung Galaxy S23 Ultra
-Samsung Galaxy Z Flip4
-Samsung Galaxy Z Fold4
-realme GT Neo 3T
-Honor X8
-Samsung Galaxy A53 5G
-Samsung Galaxy A33 5G
-Xiaomi 12
-Xiaomi 12X
-Xiaomi 12 Pro
-Honor Magic4
-Honor Magic4 Pro
-Oppo Find X5 Lite
-Oppo Find X5
-Oppo Find X5 Pro
-OnePlus Nord CE 2 5G
-realme 9 Pro
-realme 9i
-realme 9 Pro +
+realme 9 Pro+
+Samsung Galaxy Tab S8
+Samsung Galaxy Tab S8+
 Samsung Galaxy Tab S8 Ultra
-Samsung Galaxy S22 5G
-Samsung Galaxy S22+ 5G
-Samsung Galaxy S22 Ultra 5G
-Samsung Galaxy S21 FE 5G
-Google Pixel 6
-Google Pixel 6 Pro
-Oppo Reno6 Pro 5G
-Oppo Reno6
-Samsung Galaxy Z Flip3
-Samsung Galaxy Z Fold3
-Samsung Galaxy A52 5G
-Samsung Galaxy A52
-Samsung Galaxy A72
-Oppo Find X3 Pro
-Oppo Find X3 Neo
-Oppo Find X3 Lite
 Sony Xperia Pro
-Motorola Moto G 5G
-Samsung Galaxy S21 5G
-Samsung Galaxy S21+ 5G
-Samsung Galaxy S21 Ultra 5G
-Xiaomi Redmi 9T
-Xiaomi Redmi Note 9T
-Xiaomi Mi 11
-Poco M3
-Nokia 8.3 5G
-Vivo X51
-Oppo Reno4 5G
-OnePlus 8T
-realme 7 Pro
-Xiaomi Mi 10T
-Motorola Moto E7 Plus
-Motorola Moto G9 Play
-Samsung Galaxy S20 FE 5G
-OnePlus 8T
+Xiaomi Poco M3
 Sony Xperia 5 II
-realme C11
-Xiaomi POCO X3 NFC
-Oppo Find X2 Lite
-Samsung Galaxy Note 20
-Google Pixel 4a
+Samsung Galaxy Note20 5G
 OnePlus Nord
 Samsung Galaxy Tab S6 Lite
 Samsung Galaxy A71
@@ -88,3 +34,32 @@ Realme X2 Pro
 Google Pixel 4
 Google Pixel 4 XL
 Samsung Galaxy S10e
+
+
+Xiaomi Mi Note 10
+Sony Xperia 1 II
+Sony Xperia 10 II
+realme X50 pro
+realme 5i
+realme 6i
+realme C3
+realme 6 Pro
+Motorola Moto G8 Plus
+Realme X3 SuperZoom
+Google Pixel 5
+Samsung Galaxy A51
+Samsung Galaxy S20 5G
+Xiaomi Mi 10
+Xiaomi Mi 10 Lite
+Samsung Galaxy A71
+Samsung Galaxy Tab S6 Lite
+OnePlus Nord
+Google Pixel 4a
+Samsung Galaxy Note20 5G
+Xiaomi redmi Note 9 Pro
+Samsung Galaxy Z Flip3 5G
+Samsung Galaxy Z Fold3 5G
+Sony Xperia Pro
+Xiaomi Poco M3
+Xiaomi Mi 10T
+Sony Xperia 5 II
