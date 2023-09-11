@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: '/home/mherr/GenerateArticle/Article-Generation/.env' });
 
 // Define constants for all files to use
 const WORDPRESS_POST_API_URL = process.env.WORDPRESS_POST_API_URL;
