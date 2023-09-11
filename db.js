@@ -1,5 +1,6 @@
 const mysql = require("mysql");
-require('dotenv').config();
+require('dotenv').config({ path: '/home/mherr/GenerateArticle/Article-Generation/.env' });
+
 
 const connectToDB = () => {
   // Create connection, test if it works and return it
