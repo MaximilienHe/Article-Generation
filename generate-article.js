@@ -42,11 +42,8 @@ function canExecuteAtThisTime() {
     { hour: 8, minute: 15 },
     { hour: 15, minute: 15 },
     { hour: 16, minute: 15 },
-    { hour: 17, minute: 15 },
-    { hour: 20, minute: 15 },
     { hour: 21, minute: 15 },
     { hour: 22, minute: 15 },
-    { hour: 23, minute: 15 }
   ];
 
   for (let time of executionTimes) {
