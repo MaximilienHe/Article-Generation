@@ -20,4 +20,6 @@ const connectToDB = () => {
   return db;
 };
 
+// Exporting database method
+
 module.exports = connectToDB;

@@ -11,9 +11,55 @@ const generateLastArticle = require("./functions/generateLastArticle");
 // Arguments from command line
 const action = process.argv[2];
 const delayInMinutes = parseInt(process.argv[3] || "0"); // Default value 0
-const fileNameOrProductName = process.argv[6];
-const postId = process.argv[5];
 const postStatus = process.argv[4] || "draft"; // Default value "draft"
+const postId = process.argv[5];
+const fileNameOrProductName = process.argv[6];
+const timeOfExecution = process.argv[7] || "both"; // Valeur par défaut "both"
+
+// function canExecuteAtThisTime(timeOfExecution) {
+//   const currentHour = new Date().getHours();
+//   if (timeOfExecution === "day" && (currentHour >= 6 && currentHour <= 24)) {
+//       return true;
+//   }
+//   if (timeOfExecution === "night" && (currentHour < 6 || currentHour === 0)) {
+//       return true;
+//   }
+//   if (timeOfExecution === "both") {
+//       return true;
+//   }
+//   return false;
+// }
+
+function canExecuteAtThisTime() {
+  const currentDate = new Date();
+  const currentHour = currentDate.getHours();
+  const currentMinute = currentDate.getMinutes();
+
+  // List of execution times
+  const executionTimes = [
+    { hour: 6, minute: 15 },
+    { hour: 7, minute: 15 },
+    { hour: 8, minute: 15 },
+    { hour: 15, minute: 15 },
+    { hour: 16, minute: 15 },
+    { hour: 21, minute: 15 },
+    { hour: 22, minute: 15 },
+  ];
+
+  for (let time of executionTimes) {
+    if (currentHour === time.hour && currentMinute === time.minute) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+
+if (!canExecuteAtThisTime(timeOfExecution)) {
+  console.log("Le script ne peut pas être exécuté à ce moment de la journée selon les paramètres fournis.");
+  return;
+}
 
 // Main
 if (action === "file") {
