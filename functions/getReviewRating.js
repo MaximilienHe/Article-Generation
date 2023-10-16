@@ -11,6 +11,14 @@ const getReviewRating = async (url) => {
     const divContent = reviewTotalBox
       ? reviewTotalBox.querySelector("div").innerHTML
       : null;
+
+    // Check Error
+    if (divContent === null) {
+      console.error(
+        `Erreur lors de la récupération du contenu de la div .review-total-box`
+      );
+      return null;
+    }
     return divContent ? parseFloat(divContent.trim()) : null;
   } catch (error) {
     console.error("Erreur lors de la récupération de la note :", error);

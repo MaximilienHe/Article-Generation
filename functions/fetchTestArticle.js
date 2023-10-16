@@ -19,6 +19,13 @@ const fetchTestArticle = async (product_name) => {
       product_name
     )}"`
   );
+  // Check Error
+  if (!response.ok) {
+    console.error(
+      `Erreur lors de la récupération des données de l'API: ${response.statusText}`
+    );
+    return null;
+  }
   const data = await response.json();
 
   // Use regex to extract product name

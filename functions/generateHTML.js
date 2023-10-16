@@ -9,8 +9,19 @@ const askGPT = require('./askGPT');
 const generateHtml = async (product_name) => {
     try {
       const productResponse = await axios.get(`${PHONE_API_URL}/api/devices/details/${product_name}`, { headers });
-      const productData = productResponse.data[0];
       const specResponse = await axios.get(`${PHONE_API_URL}/api/devices/specs/${product_name}`, { headers });
+      
+      // Check Error
+      if (productResponse.data.error) {
+        console.error(`Erreur lors de la récupération des données de l'API: ${productResponse.data.error}`);
+        return null;
+      }
+      if (specResponse.data.error) {
+        console.error(`Erreur lors de la récupération des données de l'API: ${specResponse.data.error}`);
+        return null;
+      }
+      
+      const productData = productResponse.data[0];
       const specData = specResponse.data;
 
       // Format specData into a string that can be included in the GPT prompt
