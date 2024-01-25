@@ -33,6 +33,7 @@ const generateLastArticle = async (delayInMinutes, postStatus) => {
       );
     } catch (err) {
       console.error(`Erreur lors de la génération de l'article : ${err}`);
+      console.error(`Erreur, stack : ${err.stack}`)
       db.end();
       process.exit(1); // Terminer avec un code d'erreur
       return;
