@@ -29,7 +29,6 @@ async function generateArticle(action, productName, postId, postStatus) {
       )};`;
           
       let result = await query(sqlDescriptionFrench);
-      console.log("result : ", result);
       let descriptionFrench = result[0].description_french;
 
       const currentDate = new Date();

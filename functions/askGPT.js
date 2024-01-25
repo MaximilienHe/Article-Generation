@@ -7,8 +7,6 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const askGPT = async (prompt, maxTokens) => {
-  console.log("Asking GPT ...");
-  console.log("Prompt : ", prompt)
   try {
     const response = await openai.createChatCompletion({
       model: "gpt-4-1106-preview",
@@ -23,7 +21,6 @@ const askGPT = async (prompt, maxTokens) => {
       );
       return null;
     }
-    console.log("GPT response : ", response.data.choices[0].message.content);
     return response.data.choices[0].message.content.trim();
   } catch (err) {
     console.error(`Erreur lors de la génération de texte : ${err.stack}`);

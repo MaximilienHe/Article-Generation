@@ -25,7 +25,6 @@ async function postToWordPress(htmlContent, productName, categoryId, postStatus,
         
       }
     );
-    console.log("Réponse du POST WordPress : " + response);
     console.log("Article publié avec succès en tant que " + postStatus + " sur WordPress");
     console.log(response.status);
     return true;
