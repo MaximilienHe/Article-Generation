@@ -8,6 +8,7 @@ const openai = new OpenAIApi(configuration);
 
 const askGPT = async (prompt, maxTokens) => {
   console.log("Asking GPT ...");
+  console.log("Prompt : ", prompt)
   try {
     const response = await openai.createChatCompletion({
       model: "gpt-4-1106-preview",
