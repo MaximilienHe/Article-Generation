@@ -33,7 +33,7 @@ async function generateArticle(action, productName, postId, postStatus) {
 
       // Ask GPT to generate a meta description based on the product description in French
       const currentDate = new Date();
-      const prompt = `Shorten this text in less than 30 words (160 characters at max). It should be still sentenced correctly and should look like a basic sentence : "${descriptionFrench}` + ". To have an idea of the time to use, the current date is " + currentDate + `".`";
+      const prompt = `Shorten this text in less than 30 words (160 characters at max). It should be still sentenced correctly and should look like a basic sentence : "${descriptionFrench}` + ". To have an idea of the time to use, the current date is " + currentDate + `"."`;
       const gptResponse = await askGPT(prompt, 60);
 
       // Create metaDesc var to store descript_french
