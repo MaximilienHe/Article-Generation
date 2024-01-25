@@ -111,8 +111,9 @@ async function generateArticle(action, productName, postId, postStatus) {
 
     return true;
   } catch (err) {
-    console.error(`Erreur lors de la génération de l'article : ${err}`);
+    console.error(`Erreur lors de la génération de l'article, depuis generateArticle.js : ${err}`);
     console.error(`Erreur, stack : ${err.stack}`);
+    console.error(`Erreur, message : ${err.message}`);
     return false;
   }
 }

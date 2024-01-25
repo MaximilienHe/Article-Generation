@@ -32,8 +32,9 @@ const generateLastArticle = async (delayInMinutes, postStatus) => {
         `Article généré pour le dernier appareil : ${lastDevice.title}`
       );
     } catch (err) {
-      console.error(`Erreur lors de la génération de l'article, generateLastArticle.js : ${err}`);
+      console.error(`Erreur lors de la génération de l'article depuis generateLastArticle.js : ${err}`);
       console.error(`Erreur, stack : ${err.stack}`)
+      console.error(`Erreur, message : ${err.message}`)
       db.end();
       process.exit(1); // Terminer avec un code d'erreur
       return;
