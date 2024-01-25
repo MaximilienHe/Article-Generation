@@ -13,6 +13,8 @@ const askGPT = async (prompt, maxTokens) => {
     max_tokens: maxTokens,
   });
 
+  console.log(response)
+
   // Check Error
   if (response.data.error) {
     console.error(`Erreur lors de la génération de texte : ${response.data.error}`);
