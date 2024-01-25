@@ -23,13 +23,17 @@ async function generateArticle(action, productName, postId, postStatus) {
     if (await productExists(productName)) {
       console.log("Le produit existe dans la base de données. Génération de l'article ...");
       // Call database to get descript_french from device 
+
+      console.log("Getting description_french from database ...")
       const sqlDescriptionFrench = `SELECT description_french FROM devices WHERE title = ${mysql.escape(
         productName
       )};`;
           
+      console.log("Executing query ...")
       let result = await query(sqlDescriptionFrench);
       let descriptionFrench = result[0].description_french;
 
+      console.log("Asking GPT ...")
       // Ask GPT to generate a meta description based on the product description in French
       const prompt = `Shorten this text in less than 30 words (160 characters at max). It should be still sentenced correctly and should look like a basic sentence : "${descriptionFrench}`;
       const gptResponse = await askGPT(prompt, 60);
@@ -37,9 +41,12 @@ async function generateArticle(action, productName, postId, postStatus) {
       // Create metaDesc var to store descript_french
       const metaDesc = gptResponse;
 
-
+      
+      console.log("Generating HTML ...")
       const htmlContent = await generateHTML(productName);
+      console.log("Getting brand name ...")
       const brandName = getBrandName(productName);
+      console.log("Getting category ID ...")
       const categoryId = await getCategoryId(brandName);
       const tags = ["fichetechnique", brandName, "fiche technique", "fiche technique " + brandName, "fiche technique " + productName, "fiche technique " + brandName + " " + productName, productName, "fiche technique " + productName + " " + brandName];
       // Check if the product exists in the database
@@ -47,6 +54,7 @@ async function generateArticle(action, productName, postId, postStatus) {
         productName
       )};`;
 
+      console.log("Executing query ...")
       db.query(sql, (err) => {
         if (err) throw err;
       });
