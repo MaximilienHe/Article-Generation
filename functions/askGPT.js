@@ -22,7 +22,7 @@ const askGPT = async (prompt, maxTokens) => {
       );
       return null;
     }
-    console.log("GPT response : ", response.data);
+    console.log("GPT response : ", response.data.choices);
     return response.data.choices[0].text.trim();
   } catch (err) {
     console.error(`Erreur lors de la génération de texte : ${err.stack}`);
