@@ -34,7 +34,8 @@ const generateHtml = async (product_name) => {
       }
 
       // Demande à GPT de générer une description en français du produit en 800 mots et le nom du produit en gras (<strong> tag) en utilisant les données suivantes de la page produit:
-      let prompt = `Génére une description en français en 1000 mots, et en un seul paragraphe que tu découperas juste en trois sous paragraphes pour un produit tech. Ne commence pas chaque paragraphe par le nom du produit, ne te répéte pas dans ta rédaction. Dans ces sous-paragraphes que tu génèreras, pense à mettre le nom du produit, et les informations importantes au sein du texte en gras (<strong> tag). Fais des retours à la ligne entre les paragraphes pour aérer le texte. Et fait cette description en utilisant les données suivantes de la page produit:\n\n Nom du produit : ${product_name}\n\n Description du produit : ${specDataString}`;
+      const currentDate = new Date();
+      let prompt = `Génére une description en français en 1000 mots, et en un seul paragraphe que tu découperas juste en trois sous paragraphes pour un produit tech. Ne commence pas chaque paragraphe par le nom du produit, ne te répéte pas dans ta rédaction. Dans ces sous-paragraphes que tu génèreras, pense à mettre le nom du produit, et les informations importantes au sein du texte en gras (<strong> tag). Fais des retours à la ligne entre les paragraphes pour aérer le texte. Et fait cette description en utilisant les données suivantes de la page produit:\n\n Nom du produit : ${product_name}\n\n Description du produit : ${specDataString}` + `\n\n Pour avoir une idée du temps à utiliser, la date actuelle est ${currentDate}.`;
 
       const maxTokens = 1000;
       const description = await askGPT(prompt, maxTokens);

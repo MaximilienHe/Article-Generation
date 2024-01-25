@@ -9,14 +9,13 @@ const openai = new OpenAIApi(configuration);
 const askGPT = async (prompt, maxTokens) => {
   console.log("Asking GPT ...");
   try {
-    const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: prompt,
+    const response = await openai.createChatCompletion({
+      model: "gpt-4-1106-preview",
+      messages: [{role:"user", content: prompt}],
       max_tokens: maxTokens,
     });
   } catch (err) {
     console.error(`Erreur lors de la génération de texte : ${err.stack}`);
-    console.log("Réponse de GPT : " + response)
     return null;
   }
 
