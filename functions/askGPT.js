@@ -7,17 +7,25 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const askGPT = async (prompt, maxTokens) => {
-  const response = await openai.createCompletion({
-    model: "text-davinci-003",
-    prompt: prompt,
-    max_tokens: maxTokens,
-  });
+  console.log("Asking GPT ...");
+  try {
+    const response = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: prompt,
+      max_tokens: maxTokens,
+    });
+  } catch (err) {
+    console.error(`Erreur lors de la génération de texte : ${err}`);
+    return null;
+  }
 
-  console.log(response)
+  console.log("Response from GPT : " + response);
 
   // Check Error
   if (response.data.error) {
-    console.error(`Erreur lors de la génération de texte : ${response.data.error}`);
+    console.error(
+      `Erreur lors de la génération de texte : ${response.data.error}`
+    );
     return null;
   }
 
