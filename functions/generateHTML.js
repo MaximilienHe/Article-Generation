@@ -20,6 +20,8 @@ const generateHtml = async (product_name) => {
         console.error(`Erreur lors de la récupération des données de l'API: ${specResponse.data.error}`);
         return null;
       }
+
+      console.log("specResponse.data : ", specResponse.data)
       
       const productData = productResponse.data[0];
       const specData = specResponse.data;
@@ -32,6 +34,8 @@ const generateHtml = async (product_name) => {
           specDataString += `${spec.name}: ${spec.value}\n`;
         }
       }
+
+      console.log('specDataString : ', specDataString)
 
       // Demande à GPT de générer une description en français du produit en 800 mots et le nom du produit en gras (<strong> tag) en utilisant les données suivantes de la page produit:
       const currentDate = new Date();
