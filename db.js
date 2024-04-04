@@ -1,5 +1,6 @@
 const mysql = require("mysql");
 require('dotenv').config({ path: '/home/mherr/GenerateArticle/Article-Generation/.env' });
+// require('dotenv').config({})
 
 
 const connectToDB = () => {

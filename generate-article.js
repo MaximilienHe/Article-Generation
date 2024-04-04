@@ -31,6 +31,7 @@ const timeOfExecution = process.argv[7] || "both"; // Valeur par défaut "both"
 // }
 
 function canExecuteAtThisTime() {
+  return true;
   const currentDate = new Date();
   const currentHour = currentDate.getHours();
   const currentMinute = currentDate.getMinutes();
