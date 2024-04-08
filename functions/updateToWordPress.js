@@ -24,8 +24,6 @@ async function updateToWordPress(htmlContent, productName, postId, postStatus, c
           title: "Fiche Technique - " + productName,
           slug: "fiche-technique-" + formattedProductName.normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "") // Supprimer les accents
-            .replace(/\(/g, "") // Supprimer les parenthèses ouvrantes
-            .replace(/\)/g, "") // Supprimer les parenthèses fermantes
             .replace(/ /g, "-"), // Remplacer les espaces par des tirets
           content: htmlContent,
           categories: [categoryId, 2653],
