@@ -26,3 +26,5 @@ const removeStars = async (fileName, postStatus) => {
 
   console.log('Tous les articles ont été mis à jour.');
 }
+
+module.exports = removeStars;
