@@ -6,12 +6,12 @@ const { WORDPRESS_POST_API_URL } = require('../constants');
 
 const removeStars = async (fileName, postStatus) => {
   // Lire les ID des articles depuis un fichier
-  const articleIds = fs.readFileSync(fileName, 'utf8').split('\n');
+  let articleIds = fs.readFileSync(fileName, 'utf8').split('\n');
   
   for (const postId of articleIds) {
     try {
       // Récupérer le contenu actuel de l'article
-      const response = await axios.get(`${WORDPRESS_POST_API_URL}/wp-json/wp/v2/posts/${postId}`);
+      let response = await axios.get(`${WORDPRESS_POST_API_URL}/wp-json/wp/v2/posts/${postId}`);
       let content = response.data.content.rendered;
 
       // Remplacer les "**" par des balises <b>
