@@ -18,7 +18,7 @@ const removeStars = async (fileName, postStatus) => {
       content = content.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
 
       // Mettre à jour l'article sur WordPress
-      await updateToWordPress(htmlContent=content, postId=postId);
+      await updateToWordPress(content, undefined, postId, undefined, undefined, undefined, undefined);
     } catch (error) {
       console.error(`Erreur lors de la mise à jour de l'article ${postId} : ${error.message}`);
     }
