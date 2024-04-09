@@ -1,4 +1,6 @@
+console.log("Import generateArticle");
 const generateArticle = require("./generateArticle");
+console.log("Import pause");
 const pause = require("./pause");
 const getRandomPause = require("./getRandomPause");
 

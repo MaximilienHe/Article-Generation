@@ -7,6 +7,7 @@ const generateAllArticles = require("./functions/generateAllArticles");
 const generateArticle = require("./functions/generateArticle");
 const createArticlesFromFile = require("./functions/createArticlesFromFile");
 const generateLastArticle = require("./functions/generateLastArticle");
+const removeStars = require("./functions/removeStars");
 
 // Arguments from command line
 const action = process.argv[2];
@@ -87,7 +88,15 @@ if (action === "file") {
     generateLastArticle(delayInMinutes, postStatus);
 } else if (fileNameOrProductName && postId) {
   generateArticle(action, fileNameOrProductName, postId, postStatus);
-} else {
+} else if (action === "removeStars") {
+  if (!fileNameOrProductName) {
+    console.error("Veuillez fournir le nom d'un fichier.");
+    return;
+  }
+  console.log("Mise à jour des articles à partir du fichier...");
+  processFileAndUpdatePosts(fileNameOrProductName, postStatus);
+}
+else {
   console.log(
     "Veuillez fournir un nom de produit ou une action valide (file ou all)"
   );
