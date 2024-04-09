@@ -6,6 +6,9 @@ const {
 
 async function updateToWordPress(htmlContent, productName, postId, postStatus, categoryId, metaDesc, tags = []) {
   try {
+    // Check if productName ends with '+' and replace it with 'plus'
+    let formattedProductName = productName.endsWith('+') ? productName.slice(0, -1) + '-plus' : productName;
+
     const response = await fetch(
       `${WORDPRESS_POST_API_URL}/wp-json/wp/v2/posts/${postId}`,
       {
@@ -19,7 +22,9 @@ async function updateToWordPress(htmlContent, productName, postId, postStatus, c
         },
         body: JSON.stringify({
           title: "Fiche Technique - " + productName,
-          slug: "fiche-technique-" + productName.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ /g, "-"),
+          slug: "fiche-technique-" + formattedProductName.normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "") // Supprimer les accents
+            .replace(/ /g, "-"), // Remplacer les espaces par des tirets
           content: htmlContent,
           categories: [categoryId, 2653],
           excerpt: metaDesc

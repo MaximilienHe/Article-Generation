@@ -2,6 +2,8 @@ const { WORDPRESS_POST_API_URL, WORDPRESS_APP_ID, WORDPRESS_APP_PASSWORD } = req
 
 async function postToWordPress(htmlContent, productName, categoryId, postStatus, metaDesc, tags = []) {
   try {
+    let formattedProductName = productName.endsWith('+') ? productName.slice(0, -1) + '-plus' : productName;
+
     const response = await fetch(
       `${WORDPRESS_POST_API_URL}/wp-json/wp/v2/posts`,
       {
@@ -16,7 +18,9 @@ async function postToWordPress(htmlContent, productName, categoryId, postStatus,
         body: JSON.stringify({
           title: "Fiche Technique - " + productName,
           // Slug has to be "fiche-technique-" + the product name normalized without spaces and accents, and dashes instead of spaces"
-          slug: "fiche-technique-" + productName.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ /g, "-"),
+          slug: "fiche-technique-" + formattedProductName.normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "") // Supprimer les accents
+            .replace(/ /g, "-"), // Remplacer les espaces par des tirets
           content: htmlContent,
           status: postStatus,
           categories: [categoryId, 2653],
