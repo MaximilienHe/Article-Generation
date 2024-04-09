@@ -4,7 +4,7 @@ const axios = require('axios');
 const updateToWordPress = require('./updateToWordPress');
 const { WORDPRESS_POST_API_URL } = require('../constants');
 
-async function removeStars(fileName, postStatus) {
+const removeStars = async (fileName, postStatus) => {
   // Lire les ID des articles depuis un fichier
   const articleIds = fs.readFileSync(fileName, 'utf8').split('\n');
   
