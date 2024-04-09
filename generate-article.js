@@ -95,7 +95,7 @@ if (action === "file") {
     return;
   }
   console.log("Mise à jour des articles à partir du fichier...");
-  processFileAndUpdatePosts(fileNameOrProductName, postStatus);
+  removeStars(fileNameOrProductName, postStatus);
 }
 else {
   console.log(
