@@ -57,9 +57,10 @@ function canExecuteAtThisTime() {
   return false;
 }
 
-
 if (!canExecuteAtThisTime(timeOfExecution)) {
-  console.log("Le script ne peut pas être exécuté à ce moment de la journée selon les paramètres fournis.");
+  console.log(
+    "Le script ne peut pas être exécuté à ce moment de la journée selon les paramètres fournis."
+  );
   return;
 }
 
@@ -84,11 +85,10 @@ if (action === "file") {
       );
     }
   })();
-} else if (action === "last") { // Nouvelle condition pour gérer 'last'
-    console.log("Générer un article pour le dernier appareil...");
-    generateLastArticle(delayInMinutes, postStatus);
-} else if (fileNameOrProductName && postId) {
-  generateArticle(action, fileNameOrProductName, postId, postStatus);
+} else if (action === "last") {
+  // Nouvelle condition pour gérer 'last'
+  console.log("Générer un article pour le dernier appareil...");
+  generateLastArticle(delayInMinutes, postStatus);
 } else if (action === "removeStars") {
   if (!fileNameOrProductName) {
     console.error("Veuillez fournir le nom d'un fichier.");
@@ -96,8 +96,9 @@ if (action === "file") {
   }
   console.log("Mise à jour des articles à partir du fichier...");
   removeStars(fileNameOrProductName, postStatus);
-}
-else {
+} else if (fileNameOrProductName && postId) {
+  generateArticle(action, fileNameOrProductName, postId, postStatus);
+} else {
   console.log(
     "Veuillez fournir un nom de produit ou une action valide (file ou all)"
   );
@@ -109,11 +110,21 @@ else {
   console.log("4. ID du post (indiquer l'ID pour PUT, 0 pour POST)");
   console.log("5. Nom du fichier ou du produit\n\n");
   console.log("Exemples d'utilisation:");
-  console.log("Génerer des articles à partir d'un fichier avec 5 minutes de délai et statut 'publish': node generate-article.js file 5 'Fiches techniques existantes.txt' publish");
-  console.log("Génerer des articles à partir d'un fichier avec 5 minutes de délai et statut 'draft': node generate-article.js file 5 'Fiches techniques existantes.txt'");
-  console.log("Générer tous les articles avec 5 minutes de délai et statut 'publish': node generate-article.js all 5 publish");
-  console.log("Générer un article pour un produit avec 5 minutes de délai et statut 'publish': node generate-article.js PUT 0 draft 134784 'Samsung Galaxy S23 Ultra'");
-  console.log("Modifier un article pour un produit avec 5 minutes de délai et statut 'publish': node generate-article.js PUT 5 publish 123456 'Samsung Galaxy S23 Ultra'")
+  console.log(
+    "Génerer des articles à partir d'un fichier avec 5 minutes de délai et statut 'publish': node generate-article.js file 5 'Fiches techniques existantes.txt' publish"
+  );
+  console.log(
+    "Génerer des articles à partir d'un fichier avec 5 minutes de délai et statut 'draft': node generate-article.js file 5 'Fiches techniques existantes.txt'"
+  );
+  console.log(
+    "Générer tous les articles avec 5 minutes de délai et statut 'publish': node generate-article.js all 5 publish"
+  );
+  console.log(
+    "Générer un article pour un produit avec 5 minutes de délai et statut 'publish': node generate-article.js PUT 0 draft 134784 'Samsung Galaxy S23 Ultra'"
+  );
+  console.log(
+    "Modifier un article pour un produit avec 5 minutes de délai et statut 'publish': node generate-article.js PUT 5 publish 123456 'Samsung Galaxy S23 Ultra'"
+  );
 }
 
 // db.end((err) => {
