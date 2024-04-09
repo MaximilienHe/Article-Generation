@@ -20,7 +20,7 @@ const removeStars = async (fileName, postStatus) => {
       // Mettre à jour l'article sur WordPress
       await updateToWordPress(content, undefined, postId, undefined, undefined, undefined, undefined);
     } catch (error) {
-      console.error(`Erreur lors de la mise à jour de l'article ${postId} : ${error.message}`);
+      console.error(`Erreur lors de la mise à jour de l'article (removeStars) ${postId} : ${error.message}`);
     }
   }
 
