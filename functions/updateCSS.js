@@ -92,6 +92,7 @@ const updateCSS = async () => {
             content = replaceOldCSSWithNewContent(content, updateContentWithNewCSS(content));
 
             // Mettre à jour l'article sur WordPress
+            console.log("Calling update from CSS update file");
             await updateToWordPress(content, post.id);
         } catch (error) {
             console.error(`Erreur lors de la mise à jour de l'article ${post.id} : ${error.message}`);
