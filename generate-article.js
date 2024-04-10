@@ -8,6 +8,7 @@ const generateArticle = require("./functions/generateArticle");
 const createArticlesFromFile = require("./functions/createArticlesFromFile");
 const generateLastArticle = require("./functions/generateLastArticle");
 const removeStars = require("./functions/removeStars");
+const updateCSS = require("./functions/updateCSS");
 
 // Arguments from command line
 const action = process.argv[2];
@@ -96,7 +97,11 @@ if (action === "file") {
   }
   console.log("Mise à jour des articles à partir du fichier...");
   removeStars(fileNameOrProductName, postStatus);
-} else if (fileNameOrProductName && postId) {
+} else if (action === "CSS") {
+  console.log("Mise à jour du CSS des articles...");
+  updateCSS();
+}
+else if (fileNameOrProductName && postId) {
   generateArticle(action, fileNameOrProductName, postId, postStatus);
 } else {
   console.log(

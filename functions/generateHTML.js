@@ -60,9 +60,9 @@ const generateHtml = async (product_name) => {
           <p>${description}</p>
           <hr class="wp-block-separator">
           <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;">
-            <div style="flex: 0 1 auto; max-width: 150px; margin-right: 20px; position: relative;">
+            <div style="flex: 0 1 auto; max-width: 300px; margin-right: 20px; position: relative;">
               ${reviewRating !== null ? `<div style="position: absolute; top: 0; right: 0; background-color: #31AD6E; border-radius: 5px; padding: 3px 6px; color: #FFFFFF; font-size: 14px;">${reviewRating.toFixed(1)}/10</div>` : ''}
-              <img src="${modifiedImageUrl}" alt="${translate(productData.title)}" style="width: 100%; max-width: 200px; height: auto; padding-right: 70px"/>
+              <img src="${modifiedImageUrl}" alt="${translate(productData.title)}" style="width: 100%; max-width: 200px; height: auto;"/>
             </div>
             <div style="flex: 1 1 60%; min-width: 250px;">
               ${productData.id !== null ? `<div style="width: 100%;">[price-history id="${productData.id}"]</div>` : ''}
