@@ -14,7 +14,6 @@ const generateHtml = async (product_name) => {
         return `https://droidsoft.fr/images_smartphones/${imageName}`; // Construit la nouvelle URL avec le domaine souhaité.
       }
 
-      const modifiedImageUrl = replaceImageUrl(productData.img);
       
       const productResponse = await axios.get(`${PHONE_API_URL}/api/devices/details/${product_name}`, { headers });
       const specResponse = await axios.get(`${PHONE_API_URL}/api/devices/specs/${product_name}`, { headers });
@@ -28,8 +27,9 @@ const generateHtml = async (product_name) => {
         console.error(`Erreur lors de la récupération des données de l'API: ${specResponse.data.error}`);
         return null;
       }
-
+      
       const productData = productResponse.data[0];
+      const modifiedImageUrl = replaceImageUrl(productData.img);
       const specData = specResponse.data;
 
       // Format specData into a string that can be included in the GPT prompt
