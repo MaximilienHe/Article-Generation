@@ -93,7 +93,7 @@ const updateCSS = async () => {
 
             // Mettre à jour l'article sur WordPress
             console.log("Calling update from CSS update file");
-            await updateToWordPress(content, post.id);
+            await updateToWordPress(content, undefined, post.id, undefined, undefined, undefined, undefined);
         } catch (error) {
             console.error(`Erreur lors de la mise à jour de l'article ${post.id} : ${error.message}`);
         }
