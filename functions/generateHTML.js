@@ -8,6 +8,14 @@ const translate = require('./translate');
 const askGPT = require('./askGPT');
 const generateHtml = async (product_name) => {
     try {
+
+      function replaceImageUrl(originalUrl) {
+        const imageName = originalUrl.split('/').pop(); // Extrait le nom de l'image de l'URL originale.
+        return `https://droidsoft.fr/images_smartphones/${imageName}`; // Construit la nouvelle URL avec le domaine souhaité.
+      }
+
+      const modifiedImageUrl = replaceImageUrl(productData.img);
+      
       const productResponse = await axios.get(`${PHONE_API_URL}/api/devices/details/${product_name}`, { headers });
       const specResponse = await axios.get(`${PHONE_API_URL}/api/devices/specs/${product_name}`, { headers });
       
@@ -51,18 +59,18 @@ const generateHtml = async (product_name) => {
           <h2>Ce qu'il faut savoir sur le ${productData.title}</h2>
           <p>${description}</p>
           <hr class="wp-block-separator">
-          <div style="display: flex; justify-content: flex-start;">
-            <div style="position: relative; display: flex; align-items: center; width:30%; margin-right: 50px;">
+          <div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px;">
+            <div style="flex-grow: 1; min-width: 120px; max-width: 100%;">
               <div style="position: relative;">
+                <img src="${modifiedImageUrl}" alt="${translate(productData.title)}" style="width: 100%; display: block;">
                 ${reviewRating !== null ? `<div style="position: absolute; top: 0; right: 0; background-color: #31AD6E; border-radius: 5px; padding: 3px 6px; color: #FFFFFF;">${reviewRating.toFixed(1)}/10</div>` : ''}
-                <img src="${productData.img}" alt="${translate(productData.title)}" />
               </div>
             </div>
-            <div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-1 wp-block-buttons-is-layout-flex">
-          ${relatedArticle !== null ? `<div class="wp-block-button"><a class="wp-block-button__link has-vivid-green-cyan-background-color has-background wp-element-button" href="${relatedArticle.url}">Lire le test du ${productData.title}</a></div>` : ''}
-            </div>
+            ${productData.id !== null ? `<div style="flex-grow: 2; min-width: 240px; width: 100%;">[price-history id="${productData.id}"]</div>` : ''}
           </div>
-          ${productData.id !== null ? `<p>[price-history id="${productData.id}"]</p>` : ''}
+          <div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-1 wp-block-buttons-is-layout-flex">
+            ${relatedArticle !== null ? `<div class="wp-block-button"><a class="wp-block-button__link has-vivid-green-cyan-background-color has-background wp-element-button" href="${relatedArticle.url}">Lire le test du ${productData.title}</a></div>` : ''}
+          </div>
           <p></p>
           ${productData.title !== null ? `<p>[kelkoo-box product_name="${productData.title}"]</p>` : ''}
           ${AmazonCode ? `<p>[amazon box="${AmazonCode}"]</p>` : ''}
