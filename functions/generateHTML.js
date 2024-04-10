@@ -59,14 +59,14 @@ const generateHtml = async (product_name) => {
           <h2>Ce qu'il faut savoir sur le ${productData.title}</h2>
           <p>${description}</p>
           <hr class="wp-block-separator">
-          <div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px;">
-            <div style="flex-grow: 1; min-width: 120px; max-width: 100%;">
-              <div style="position: relative;">
-                <img src="${modifiedImageUrl}" alt="${translate(productData.title)}" style="width: 100%; display: block;">
-                ${reviewRating !== null ? `<div style="position: absolute; top: 0; right: 0; background-color: #31AD6E; border-radius: 5px; padding: 3px 6px; color: #FFFFFF;">${reviewRating.toFixed(1)}/10</div>` : ''}
-              </div>
+          <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;">
+            <div style="flex: 0 1 auto; max-width: 150px; margin-right: 20px; position: relative;">
+              ${reviewRating !== null ? `<div style="position: absolute; top: 0; right: 0; background-color: #31AD6E; border-radius: 5px; padding: 3px 6px; color: #FFFFFF; font-size: 14px;">${reviewRating.toFixed(1)}/10</div>` : ''}
+              <img src="${modifiedImageUrl}" alt="${translate(productData.title)}" style="width: 100%; max-width: 150px; height: auto;"/>
             </div>
-            ${productData.id !== null ? `<div style="flex-grow: 2; min-width: 240px; width: 100%;">[price-history id="${productData.id}"]</div>` : ''}
+            <div style="flex: 1 1 60%; min-width: 250px;">
+              ${productData.id !== null ? `<div style="width: 100%;">[price-history id="${productData.id}"]</div>` : ''}
+            </div>
           </div>
           <div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-1 wp-block-buttons-is-layout-flex">
             ${relatedArticle !== null ? `<div class="wp-block-button"><a class="wp-block-button__link has-vivid-green-cyan-background-color has-background wp-element-button" href="${relatedArticle.url}">Lire le test du ${productData.title}</a></div>` : ''}
