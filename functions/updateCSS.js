@@ -37,60 +37,6 @@ const updateCSS = async () => {
             // Exemple de remplacement d'URL d'image :
             content = content.replace(/https:\/\/fdn2.gsmarena.com\/vv\/bigpic\/(.*?)\.jpg/g, 'https://droidsoft.fr/images_smartphones/$1.jpg');
 
-            const updateContentWithNewCSS = (content) => {
-                // Extraction des informations nécessaires
-                const imgRegex = /<img src="([^"]+)" alt="([^"]+)" \/>/;
-                const priceHistoryRegex = /\[price-history id="(\d+)"\]/;
-                const kelkooBoxRegex = /\[kelkoo-box product_name="([^"]+)"\]/;
-                const amazonBoxRegex = /\[amazon box="([^"]+)"\]/;
-              
-                const imgMatches = content.match(imgRegex);
-                const priceHistoryMatches = content.match(priceHistoryRegex);
-                const kelkooBoxMatches = content.match(kelkooBoxRegex);
-                const amazonBoxMatches = content.match(amazonBoxRegex);
-              
-                // Remplacement de l'URL de l'image
-                let modifiedImageUrl = '';
-                if (imgMatches && imgMatches[1]) {
-                  modifiedImageUrl = imgMatches[1].replace(/https:\/\/fdn2.gsmarena.com\/vv\/bigpic\//, 'https://droidsoft.fr/images_smartphones/');
-                }
-              
-                // Construction du nouveau contenu avec le nouveau CSS
-                let newContent = `
-              <hr class="wp-block-separator" />
-              <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;">
-                <div style="flex: 0 1 auto; max-width: 300px; margin-right: 20px; position: relative;">
-                  <p><img style="width: 100%; max-width: 200px; height: auto;" src="${modifiedImageUrl}" alt="${imgMatches ? imgMatches[2] : ''}" /></p>
-                </div>
-                <div style="flex: 1 1 60%; min-width: 250px;">
-                  ${priceHistoryMatches ? `<div style="width: 100%;">[price-history id="${priceHistoryMatches[1]}"]</div>` : ''}
-                </div>
-              </div>
-              <div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-1 wp-block-buttons-is-layout-flex"></div>
-              ${kelkooBoxMatches ? `<p>[kelkoo-box product_name="${kelkooBoxMatches[1]}"]</p>` : ''}
-              ${amazonBoxMatches ? `<p>[amazon box="${amazonBoxMatches[1]}"]</p>` : ''}
-                `;
-              
-                return newContent;
-              };
-              
-              const replaceOldCSSWithNewContent = (originalContent, newContent) => {
-                // Définir le début et la fin de la section à remplacer
-                const startMarker = '<hr class="wp-block-separator">';
-                const endMarker = '<figure class="wp-block-table">'; // Assurez-vous que c'est un élément unique après votre ancien CSS
-              
-                // Construire une regex qui capture tout entre ces deux marqueurs
-                const regexPattern = new RegExp(`(${startMarker}[\\s\\S]*?)${endMarker}`);
-              
-                // Remplacer la section capturée par newContent, suivi immédiatement par endMarker pour réintégrer la partie non remplacée du contenu
-                const updatedContent = originalContent.replace(regexPattern, `${newContent}${endMarker}`);
-              
-                return updatedContent;
-              };
-
-            // Mettre à jour le contenu avec le nouveau CSS
-            content = replaceOldCSSWithNewContent(content, updateContentWithNewCSS(content));
-
             // Mettre à jour l'article sur WordPress
             console.log("Calling update from CSS update file");
             await updateToWordPress(content, undefined, post.id, undefined, undefined, undefined, undefined);
